@@ -1,6 +1,6 @@
 # FoF 26: TSE Stand, Crew-Visualisierung
 
-Eine einzige Datei (`index.html`). Oben rechts lässt sich zwischen der Fassung „Vorher“ und „Nachher“ umschalten. Keine Abhängigkeiten, läuft offline und auf GitHub Pages.
+Eine einzige Datei (`index.html`), keine Abhängigkeiten, läuft offline und auf GitHub Pages.
 
 ## Auf GitHub Pages stellen
 
