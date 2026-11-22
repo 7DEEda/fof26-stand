@@ -80,11 +80,12 @@ body[data-main="mat"] #wrap,body[data-main="mat"] #info,body[data-main="mat"] #l
 #matL .it.sub span{font-weight:400}
 #matL .none{color:var(--muted);padding:24px 0}
 @media (max-height:460px){header{display:none !important}#main button{min-height:36px}}
+#main a.pl{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:0 14px;color:var(--muted);text-decoration:none;font-weight:700;font-size:14px;border-bottom:3px solid transparent}
 </style>
 </head>
 <body data-ver="2">
 <header><b>FoF 26: TSE Stand</b><span hidden><i id="ver1"></i><i id="ver2"></i></span></header>
-<nav id="main" aria-label="Bereich"><button id="mStand" class="on" onclick="setMain('stand')">Stand</button><button id="mMat" onclick="setMain('mat')">Material</button></nav>
+<nav id="main" aria-label="Bereich"><button id="mStand" class="on" onclick="setMain('stand')">Stand</button><button id="mMat" onclick="setMain('mat')">Material</button><a class="pl" href="pl/" aria-label="Projektleitung"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PL</a></nav>
 <div id="wrap"></div>
 <div id="mat"><div id="matTop"><input id="matQ" type="search" placeholder="Material suchen, z. B. Molton oder DMX" aria-label="Material suchen" oninput="matDraw()"><p id="matN"></p></div><div id="matL"></div></div>
 <div id="legend" class="v1"></div>
