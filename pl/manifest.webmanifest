@@ -2,7 +2,7 @@
  "name": "FoF 26 Projektleitung",
  "short_name": "FoF PL",
  "start_url": "./",
- "scope": "./",
+ "scope": "../",
  "display": "fullscreen",
  "display_override": [
   "fullscreen",
@@ -29,5 +29,6 @@
    "type": "image/png",
    "purpose": "maskable"
   }
- ]
+ ],
+ "id": "./"
 }
