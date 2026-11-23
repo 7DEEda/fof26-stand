@@ -2113,7 +2113,7 @@ var LAY={furn:['cbFurn',setFurn],mol:['cbMol',setMol],tr:['cbTr',setTr],names:['
 var LDEF={furn:1,mol:1,tr:0,names:0,cones:1,tet:1,fig:1,sig:0,pow:0,types:0};
 function setCb(id,v){var e=document.getElementById(id);if(e){e.checked=v;}}
 function lay(k,v){v=!!v;setCb(LAY[k][0],v);LAY[k][1](v);}
-function camFit(c,g){var a=wrap.clientWidth/wrap.clientHeight,f=a<1.05?Math.min(1.75,1.05/a):(a>1.5?0.8:1);if(a<0.85){c=[-10.5,6.6,6.2];f=Math.min(1.5,0.76/a);}return new THREE.Vector3(g[0]+(c[0]-g[0])*f,g[1]+(c[1]-g[1])*f,g[2]+(c[2]-g[2])*f);}
+function camFit(c,g){var a=wrap.clientWidth/wrap.clientHeight,f=a<1.05?Math.min(1.75,1.05/a):(a>1.5?0.8:1);if(a<0.85){g[0]-=0.6;c=[-11.1,6.6,6.2];f=Math.min(1.6,0.86/a);}return new THREE.Vector3(g[0]+(c[0]-g[0])*f,g[1]+(c[1]-g[1])*f,g[2]+(c[2]-g[2])*f);}
 function setTab(n){var b=document.getElementById('bar').children;for(var i=0;i<b.length;i++){if(b[i].dataset.tab){b[i].className=b[i].dataset.tab===n?'on':'';}}}
 var showTech=true,techObjs=[],molTagG=new THREE.Group(),furnTagG=new THREE.Group();scene.add(molTagG);scene.add(furnTagG);
 function bigTag(txt,css,pos,grp){var w=44+txt.length*21,cv=document.createElement('canvas');cv.width=w;cv.height=72;var g=cv.getContext('2d');
