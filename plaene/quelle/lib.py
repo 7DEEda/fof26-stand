@@ -1,3 +1,4 @@
+import re
 # Kleine SVG-Bibliothek fuer die Signallaufplaene
 from xml.sax.saxutils import escape as E
 COL={'eth':'#4a90ff','dmx':'#35c46a','kombi':'#ff9f1a','hyb':'#19c9b0','patt':'#b07cff','usb':'#9a9a9a','hdmi':'#ff4fa3',
@@ -61,6 +62,7 @@ class Svg:
         per=(len(items)+cols-1)//cols;yy=[y+24]*cols
         for i,t in enumerate(items):
             c=i//per;cx=x+c*(cw+30)
+            t=re.sub(r'(\d) (?=(W|A|m|kW|Hz|dB|dBu|Zoll|Ohm|x|s|V|t|mm|cm|Kanäle|Stück)\b|%)','\\1\u00a0',t);t=re.sub(r'\b(ID|Box|Kreis|Universum|Driver) (?=\d)','\\1\u00a0',t)
             words=t.split(' ');lines=[];cur=''
             for wd in words:
                 if len(cur)+len(wd)+1>maxc-3: lines.append(cur);cur=wd
