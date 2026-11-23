@@ -10,7 +10,7 @@
 :root{--bg:#111111;--panel:#1c1c1c;--line:#3a3a3a;--text:#fafafa;--muted:#b9b9b9;--red:#801624}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.35;display:flex;flex-direction:column;height:100vh;height:100dvh}
+body{background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.35;display:flex;flex-direction:column;height:100vh;height:100dvh;height:var(--apph,100dvh)}
 header{display:flex;align-items:baseline;gap:10px;padding:10px 14px 8px;padding-top:calc(10px + env(safe-area-inset-top))}
 header b{white-space:nowrap;font-weight:900;text-transform:uppercase;font-size:17px;border-left:5px solid var(--red);padding-left:9px}
 header a{color:var(--muted);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:5px 9px;white-space:nowrap}header a.on{color:#fff;background:var(--red);border-color:var(--red)}header nav{margin-left:auto;display:flex;gap:4px}
@@ -138,7 +138,7 @@ body[data-main="mat"] #mid,body[data-main="plan"] #mid{display:none}
 #steps{flex-direction:column;justify-content:center;width:68px;padding:6px;padding-left:calc(6px + env(safe-area-inset-left));border-top:0;border-right:1px solid var(--line)}
 #steps button,#steps .home{flex:0 0 auto;min-height:54px}
 }
-@media (orientation:landscape) and (max-height:460px){#steps button,#steps .home{min-height:0;height:calc((100vh - 60px)/7 - 4px);font-size:9px;gap:1px}#steps button svg{width:18px;height:18px}#main button{min-height:34px}}
+@media (orientation:landscape) and (max-height:460px){#steps button,#steps .home{min-height:0;height:calc((var(--apph,100vh) - 60px)/7 - 4px);font-size:9px;gap:1px}#steps button svg{width:18px;height:18px}#main button{min-height:34px}}
 .seg2{position:absolute;z-index:6;top:10px;left:50%;transform:translateX(-50%);width:min(400px,calc(100% - 20px));max-width:none;margin:0;background:rgba(30,30,30,0.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .seg2 button{min-height:34px;font-size:13.5px;padding:2px 4px}
 #info{position:absolute;z-index:5;left:10px;bottom:10px;max-width:min(640px,calc(100% - 20px));min-height:0;border:1px solid var(--line);border-radius:10px;background:rgba(20,20,20,0.86);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:8px 11px;font-size:12.5px;gap:4px 10px}
@@ -2324,6 +2324,12 @@ liObjs=techObjs.filter(function(o){return vidObjs.indexOf(o)<0&&audObjs.indexOf(
 var roP=false;if(window.ResizeObserver){new ResizeObserver(function(){if(roP){return;}roP=true;requestAnimationFrame(function(){roP=false;resize();tagScale();});}).observe(wrap);}
 view('iso');setVer(2);})();
 function go(id){}
+
+/* Höhe aus dem echten Fenster: Android meldet 100dvh beim Öffnen aus einer anderen App-Seite teils zu groß */
+function appH(){var h=window.innerHeight;if(h>0&&h!==appH.h){appH.h=h;document.documentElement.style.setProperty('--apph',h+'px');if(typeof resize==='function'){resize();}}}
+appH();window.addEventListener('resize',appH);window.addEventListener('orientationchange',function(){setTimeout(appH,300);});window.addEventListener('pageshow',appH);
+if(window.visualViewport){visualViewport.addEventListener('resize',appH);}
+[60,300,1000,2500].forEach(function(t){setTimeout(appH,t);});
 function resize(){var w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h){return;}var flip=resize.w>0&&((w>h)!==(resize.w>resize.h)||Math.abs(w-resize.w)/resize.w>0.15);resize.w=w;resize.h=h;cam.aspect=w/h;cam.updateProjectionMatrix();if(planMode){if(flip){fitOrtho();}else{var a=w/h;ocam.left=-ohh*a;ocam.right=ohh*a;ocam.top=ohh;ocam.bottom=-ohh;ocam.updateProjectionMatrix();}}else if(flip){view('iso');}ren.setSize(w,h);}
 window.addEventListener('resize',resize);
 (function loop(){
