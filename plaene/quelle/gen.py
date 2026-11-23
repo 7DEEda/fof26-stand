@@ -138,7 +138,7 @@ def video():
         s.raw(f'<text x="{cx}" y="{cy+5}" font-size="12" font-weight="800" text-anchor="middle" fill="#fff">{port}</text>')
         s.text(x+190,y+34,title,16,'t',w=800)
         for i,t in enumerate(subs): s.text(x+190,y+56+i*18,t,12.5,'m')
-    disp(1040,120,530,180,'QUER','Display 98 Zoll, quer',['iiyama LH9875UHS, 3840 x 2160','abgehängt an der hinteren Traverse','Windows-Anzeige: Querformat','Content 1920 x 1080, wird hochgezogen'],140,80)
+    disp(1040,120,530,180,'QUER','Display 98 Zoll, quer',['iiyama LH9875UHS-B1AG, 3840 x 2160','2,20 x 1,26 m, rund 84 kg, Hängebügel','an der hinteren Traverse','Windows-Anzeige: Querformat','Content 1920 x 1080, wird hochgezogen'],140,80)
     disp(1040,350,530,200,'HOCH','Display 55 Zoll, hochkant',['Samsung QM55C','am vorderen linken Bein','Windows-Anzeige: Hochformat','Content 1080 x 1920, synchron zum 98er'],80,140)
     s.wire([(640,330),(840,330),(840,210),(1040,210)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,210),sub='Weg rund 11,5 m')
     s.wire([(640,380),(840,380),(840,450),(1040,450)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,450),sub='Weg rund 17 m')
