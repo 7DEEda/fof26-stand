@@ -8,7 +8,6 @@ def tw(s,size,bold=False): return len(s)*size*(0.585 if bold else 0.54)
 class Svg:
     def __init__(s,w,h,title,sub1,sub2,idp):
         s.w=w;s.h=h;s.o=[];s.top=[];s.idp=idp
-        s.o.append(f'<rect class="bg" x="0" y="0" width="{w}" height="{h}"/>')
         s.o.append(f'<rect x="30" y="26" width="7" height="34" fill="#801624"/>')
         s.text(48,53,title,26,'t',w=900)
         s.text(w-30,40,sub1,13.5,'m',anchor='end');s.text(w-30,59,sub2,13.5,'m',anchor='end')
@@ -73,7 +72,7 @@ class Svg:
         return max(yy)
     def raw(s,x): s.o.append(x)
     def out(s):
-        return (f'<svg class="sp" id="{s.idp}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s.w} {s.h}" role="img">'+''.join(s.o)+''.join(s.top)+'</svg>')
+        return (f'<svg class="sp" id="{s.idp}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s.w} {s.h}" role="img"><rect class="bg" x="0" y="0" width="{s.w}" height="{s.h}"/>'+''.join(s.o)+''.join(s.top)+'</svg>')
 CSS='''.sp{font-family:"Helvetica Neue",Arial,sans-serif;display:block}
 .sp .bg{fill:var(--sp-bg)}.sp .t{fill:var(--sp-fg)}.sp .m{fill:var(--sp-mut)}
 .sp .hr{stroke:var(--sp-line);stroke-width:1.5}
