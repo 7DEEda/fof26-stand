@@ -2,7 +2,7 @@
 from xml.sax.saxutils import escape as E
 COL={'eth':'#4a90ff','dmx':'#35c46a','kombi':'#ff9f1a','hyb':'#19c9b0','patt':'#b07cff','usb':'#9a9a9a','hdmi':'#ff4fa3',
      'cee':'#e5484d','han':'var(--sp-fg)','L1':'#c9853f','L2':'var(--sp-l2)','L3':'#7f95ad','sch':'#f2c230','pe':'#8bc34a',
-     'T':'#1ec8ff','H':'#ffb020','Q':'#5fd870','C':'#b48cff','A':'#ffb45a','PL':'#ff6ad5'}
+     'nf':'#f2c230','lsa':'#ff8a3c','lsb':'#4fc3f7','T':'#1ec8ff','H':'#ffb020','Q':'#5fd870','C':'#b48cff','A':'#ffb45a','PL':'#ff6ad5'}
 DASH={'hyb':'9 5','usb':'','pe':'10 4 2 4'}
 def tw(s,size,bold=False): return len(s)*size*(0.585 if bold else 0.54)
 class Svg:

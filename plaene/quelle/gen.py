@@ -153,6 +153,64 @@ def video():
     s.legend(yL,[('hdmi','HDMI',3.5),('usb','USB und USB-C',3)])
     return s.out()
 
+
+def ton():
+    s=Svg(1600,1000,'SIGNALLAUFPLAN TON',SUB1,SUB2,'spTon')
+    s.zone(30,104,570,690,'IN DER BAR')
+    s.box(60,138,250,84,'Zuspieler',['Show-Rechner oder Handy','Videos im Showcontrol sind ohne Ton'])
+    s.box(60,276,250,76,'DI-Box Palmer PLI 04',['2 Kanäle, für Laptop und Handy'])
+    s.box(60,410,250,124,'Pult Allen & Heath CQ18T',['Musik auf Mono stellen','Limiter auf die Summe','Ausgang Main L und R'],accent='#801624')
+    s.box(60,596,250,160,'Amp Dynacord LX 2200',['2 x 1.100 W an 4 Ohm','Regler zurücknehmen'],accent=COL['lsa'])
+    s.text(302,650,'Kanal A',11,'t',anchor='end',w=800);s.text(302,722,'Kanal B',11,'t',anchor='end',w=800)
+    s.wire([(185,222),(185,276)],'usb',label='USB-C auf Klinke 3,5 mm',lpos=(185,249))
+    s.wire([(185,352),(185,410)],'nf',label='2 x XLR 1,5 m',lpos=(185,381))
+    s.wire([(185,534),(185,596)],'nf',label='2 x XLR 3 m',lpos=(185,565))
+    s.box(370,430,200,84,'Mikrofon Shure SM 58',['mit Schalter','für Durchsagen'])
+    s.wire([(370,472),(310,472)],'nf');s.text(340,462,'XLR',10.5,'m',anchor='middle',w=700);s.text(340,494,'5 m',10.5,'m',anchor='middle',w=700)
+    s.box(370,560,200,84,'iPad (Fernbedienung)',['steuert das Pult','über das Remote-Set'],dashed=True)
+    # Lautsprecher
+    s.zone(660,104,910,300,'AN DER TRAVERSE, über das hintere rechte Bein')
+    def spk(x,y,n,pos):
+        s.box(x,y,270,76,'',[]);s.raw(f'<rect class="chip" x="{x+12}" y="{y+14}" width="56" height="48" rx="6" stroke="#ffe14d"/>');s.text(x+40,y+44,n,15,'t',anchor='middle',w=800)
+        s.text(x+82,y+32,'Seeburg TS Nano',14,'t',w=700);s.text(x+82,y+52,pos,12.5,'m')
+    spk(850,150,'S4','hinten, Mitte rechts');spk(1270,150,'S2','hinten links')
+    spk(850,290,'S3','vorn, Mitte');spk(1270,290,'S1','vorn links')
+    s.wire([(310,646),(630,646),(630,188),(850,188)],'lsa',width=4,label='NL2 10 m',lpos=(742,188))
+    s.wire([(1120,188),(1270,188)],'lsa',width=4,label='NL2 5 m',lpos=(1195,188))
+    s.wire([(310,718),(645,718),(645,328),(850,328)],'lsb',width=4,label='NL2 15 m',lpos=(750,328))
+    s.wire([(1120,328),(1270,328)],'lsb',width=4,label='NL2 5 m',lpos=(1195,328))
+    s.text(850,252,'Kanal A: hinteres Paar, durchgeschleift, 2 x 16 Ohm ergibt 8 Ohm',12.5,'m')
+    s.text(850,392,'Kanal B: vorderes Paar, durchgeschleift, 2 x 16 Ohm ergibt 8 Ohm',12.5,'m') if False else s.text(850,384,'Kanal B: vorderes Paar, durchgeschleift, 8 Ohm',12.5,'m')
+    # Draufsicht
+    s.zone(660,440,910,354,'DRAUFSICHT, vorn ist unten')
+    sc=96;ox=1115;oy=612
+    def P(x,z): return (ox+x*sc,oy+z*sc)
+    x0,y0=P(-3.935,-1.435);x1,y1=P(3.935,1.435)
+    s.raw(f'<rect x="{x0}" y="{y0}" width="{x1-x0}" height="{y1-y0}" fill="none" stroke="var(--sp-mut)" stroke-width="2"/>')
+    s.raw(f'<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y0}" stroke="var(--sp-fg)" stroke-width="5"/><line x1="{x1}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="var(--sp-fg)" stroke-width="5"/>')
+    s.text((x0+x1)/2,y0-10,'Molton hinten und rechts',11.5,'m',anchor='middle')
+    s.text((x0+x1)/2,y1+22,'Gang und Publikum',11.5,'m',anchor='middle')
+    bx,by=P(1.25,-0.45);bx2,by2=P(3.2,1.3)
+    s.raw(f'<rect class="dev" x="{bx}" y="{by}" width="{bx2-bx}" height="{by2-by}" rx="6"/>');s.text((bx+bx2)/2,(by+by2)/2+24,'Bar',12.5,'m',anchor='middle',w=700)
+    ax,ay=P(2.15,0.12);s.raw(f'<rect x="{ax-22}" y="{ay-13}" width="44" height="26" rx="4" fill="#801624"/>');s.raw(f'<text x="{ax}" y="{ay+4.5}" font-size="11.5" font-weight="800" text-anchor="middle" fill="#fff">Amp</text>')
+    lx,ly=P(3.79,-1.29);s.raw(f'<rect x="{lx-9}" y="{ly-9}" width="18" height="18" fill="var(--sp-fg)"/>');s.text(lx-16,ly+30,'Bein',11.5,'t',anchor='end',w=700)
+    def pts(*a): return [P(x,z) for x,z in a]
+    s.wire(pts((2.15,0.02),(2.15,-0.75),(3.74,-0.75),(3.74,-1.29),(0.6,-1.29)),'lsa',width=4,arrow=False)
+    s.wire(pts((0.6,-1.25),(-3.55,-1.25)),'lsa',width=4,arrow=False)
+    s.wire(pts((2.27,0.02),(2.27,-0.63),(3.84,-0.63),(3.84,1.3),(0,1.3)),'lsb',width=4,arrow=False)
+    s.wire(pts((0,1.26),(-3.0,1.26)),'lsb',width=4,arrow=False)
+    for n,x,z in (('S1',-3.0,1.28),('S2',-3.55,-1.27),('S3',0,1.28),('S4',0.6,-1.27)):
+        cx,cy=P(x,z);s.raw(f'<circle cx="{cx}" cy="{cy}" r="15" fill="var(--sp-panel)" stroke="#ffe14d" stroke-width="2.5"/>');s.text(cx,cy+4.5,n,11.5,'t',anchor='middle',w=800,top=True)
+    yN=s.notes(30,840,1540,'HINWEISE',[
+     'Die Lautsprecherleitungen laufen von der Bar über das hintere rechte Bein (bei den Kühlschränken) nach oben und dann in der Traverse.',
+     'Der Amp kann weit mehr, als die Lautsprecher vertragen (120 W je Box). Regler am Amp nur so weit auf wie nötig, am Pult einen Limiter auf die Summe setzen.',
+     'Musik am Pult auf Mono stellen, damit vorn und hinten dasselbe läuft.',
+     'Lautstärke an der Standgrenze höchstens 70 dB. Musik ist GEMA-pflichtig.',
+     'Am Boden von der Bar zum Bein alle Leitungen abkleben.'],cols=2)
+    yL=yN+18;s.h=yL+26
+    s.legend(yL,[('lsa','Lautsprecher Kanal A (NL2)',4),('lsb','Lautsprecher Kanal B (NL2)',4),('nf','Tonleitung XLR',3),('usb','Klinke',3)])
+    return s.out()
+
 CIRC=[('A1','L1','Cluster C1 bis C4','TRUE1 3 m zu C1, dann von Cluster zu Cluster TRUE1 1,5 m, je 620 W max.',2480),
 ('A2','L2','Cluster C5 bis C8','TRUE1 5 m + 3 m zu C5, dann von Cluster zu Cluster TRUE1 1,5 m',2480),
 ('A3','L3','PowerBox 1 und 2, Switch B','TRUE1 1,5 m zu PowerBox 1, weiter zu PowerBox 2, Switch B über Adapter TRUE1 auf Schuko',700),
@@ -218,8 +276,8 @@ def strom():
     s.legend(yL,[('cee','CEE 32 A',6),('han','Multicore HAN16',6),('L1','Kreis auf L1',3.5),('L2','Kreis auf L2',3.5),('L3','Kreis auf L3',3.5),('sch','Schuko',3.5),('pe','Potentialausgleich',3.5)])
     return s.out(),ph,tot
 if __name__=='__main__':
-    L=licht();V=video();S,ph,tot=strom();print(ph,tot)
-    open('/tmp/plan/licht.svg','w').write(L);open('/tmp/plan/video.svg','w').write(V);open('/tmp/plan/strom.svg','w').write(S)
+    L=licht();V=video();S,ph,tot=strom();T=ton();print(ph,tot)
+    open('/tmp/plan/licht.svg','w').write(L);open('/tmp/plan/video.svg','w').write(V);open('/tmp/plan/strom.svg','w').write(S);open('/tmp/plan/ton.svg','w').write(T)
     for mode,css in (('light',LIGHT),('dark',DARK)):
-        h='<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>FoF 26: Signal- und Stromlaufpläne</title><style>'+css+CSS+'@page{size:A3 landscape;margin:8mm}html,body{margin:0;background:var(--sp-bg)}.pg{page-break-after:always;height:281mm;display:flex;align-items:center;justify-content:center}.pg:last-child{page-break-after:auto}.pg svg{max-width:100%;max-height:281mm;width:auto;height:281mm}</style></head><body>'+''.join('<div class="pg">'+x+'</div>' for x in (L,V,S))+'</body></html>'
+        h='<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>FoF 26: Signal- und Stromlaufpläne</title><style>'+css+CSS+'@page{size:A3 landscape;margin:8mm}html,body{margin:0;background:var(--sp-bg)}.pg{page-break-after:always;height:281mm;display:flex;align-items:center;justify-content:center}.pg:last-child{page-break-after:auto}.pg svg{max-width:100%;max-height:281mm;width:auto;height:281mm}</style></head><body>'+''.join('<div class="pg">'+x+'</div>' for x in (L,V,T,S))+'</body></html>'
         open('/tmp/plan/plan_%s.html'%mode,'w').write(h)
