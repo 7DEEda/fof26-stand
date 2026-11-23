@@ -8,7 +8,7 @@ def licht():
     # Regie
     s.zone(30,104,300,470,'REGIE AN DER BAR')
     s.box(50,134,260,70,'Stream Deck+',['14 Stimmungen, 4 Drehregler'])
-    s.box(50,262,260,108,'Show-Rechner',['Showcontrol, Art-Net mit 40 Hz','IP 2.0.0.10, Maske 255.0.0.0','sendet Universum 1, 2 und 3'],accent='#801624')
+    s.box(50,262,260,108,'Show-Rechner',['Showcontrol, Art-Net mit 40 Hz','IP 2.0.0.10, Maske 255.0.0.0','U1, U2 an alle, U3 an die Driver'],accent='#801624')
     s.box(50,440,260,62,'Switch A',['8 Port, an der Bar'])
     s.wire([(180,204),(180,262)],'usb',label='USB',lpos=(180,233))
     s.wire([(180,370),(180,440)],'eth',label='Cat5 1 m',lpos=(180,405))
@@ -16,8 +16,8 @@ def licht():
     # Technikpunkt
     s.zone(400,104,300,470,'TECHNIKPUNKT LINKE TRAVERSE OBEN')
     s.box(440,134,240,62,'Switch B',['8 Port'])
-    s.box(440,250,240,120,'Titan PowerBox 1',['IP 2.0.0.21, Universum 1','Röhren: 8 von 10 Ausgängen','XLR IN frei lassen'],accent=COL['kombi'])
-    s.box(440,424,240,120,'Titan PowerBox 2',['IP 2.0.0.22, Universum 2','Röhren: 6 von 10 Ausgängen','XLR IN frei lassen'],accent=COL['kombi'])
+    s.box(440,250,240,120,'Titan PowerBox 1',['Modus 2.x, LED magenta','Universum 1, 8 Röhren','XLR IN frei lassen'],accent=COL['kombi'])
+    s.box(440,424,240,120,'Titan PowerBox 2',['Modus 2.x, LED magenta','Universum 2, 6 Röhren','XLR IN frei lassen'],accent=COL['kombi'])
     s.wire([(310,462),(346,462),(346,156),(440,156)],'eth',label='Cat5 20 m',lpos=(346,318),sub=None)
     s.wire([(500,196),(500,250)],'eth',label='Cat5 1 m',lpos=(500,223))
     s.wire([(440,180),(424,180),(424,484),(440,484)],'eth',label='Cat5 1 m',lpos=(424,600),arrow=True) if False else s.wire([(440,180),(424,180),(424,484),(440,484)],'eth')
@@ -96,6 +96,7 @@ def licht():
     # Hinweise
     yN=s.notes(30,730,300,'HINWEISE',[
      'Alle Leitungen von der Bar laufen über das hintere rechte Bein (bei den Kühlschränken) nach oben und dann in der Traverse weiter.',
+     'PowerBoxen: Taste kurz drücken, bis die LED magenta ist (Modus 2.x, IP steht auf dem Etikett). Nicht DHCP, im Show-Netz gibt es keinen DHCP-Server. Universum an der Box einstellen: Box 1 auf 1, Box 2 auf 2.',
      'XLR IN an beiden PowerBoxen frei lassen. Liegt dort DMX an, schaltet die Box Art-Net ab.',
      'Zählung der Universen am ersten Gerät prüfen (ab 0 oder ab 1). Umstellen auf der Seite Lampentest.',
      'Reihenfolge in den DMX-Ketten wie gezeichnet. Die Startadresse steht an jeder Lampe.',
