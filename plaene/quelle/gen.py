@@ -88,14 +88,14 @@ def licht():
         s.chip(900,y,'A%d'%(i+1),None,COL['A'],w=60,h=46);s.text(974,y+28,'PATT 2017, '+pos[i],12.5,'t')
     s.wire([(310,484),(380,484),(380,871),(440,871)],'eth',label='EtherCon 10 m',lpos=(380,700))
     s.text(420,842,'',10,'m')
-    s.text(1196,872,'Driver hängen oben neben ihrer PATT.',12.5,'m')
+    s.text(1196,872,'Driver hängen oben neben ihrer PATT, feste IP wie gezeichnet.',12.5,'m')
     s.text(1196,912,'Brücken zwischen den Drivern: 2 x Cat5 3 m, 1 x Cat5 5 m',12.5,'m')
     s.text(1196,892,'Am Driver: DMX Input Ethernet, Ethernet mode Artnet',12.5,'m')
     # Hinweise
     s.notes(30,730,300,'HINWEISE',[
+     'Alle Leitungen von der Bar laufen über das hintere rechte Bein (bei den Kühlschränken) nach oben und dann in der Traverse weiter.',
      'XLR IN an beiden PowerBoxen frei lassen. Liegt dort DMX an, schaltet die Box Art-Net ab.',
      'Zählung der Universen am ersten Gerät prüfen (ab 0 oder ab 1). Umstellen auf der Seite Lampentest.',
-     'PATT Driver und PowerBoxen brauchen feste IP-Adressen wie gezeichnet.',
      'Reihenfolge in den DMX-Ketten wie gezeichnet. Die Startadresse steht an jeder Lampe.',
      'Tetris hat eigenes Licht und hängt nicht am Showcontrol.'])
     s.legend(1108,[('eth','Netzwerk (Art-Net)',3),('dmx','DMX 5-pol',3),('kombi','Kombikabel Strom und DMX',3),('hyb','Hybridkabel DMX und TRUE1',3),('patt','PATT-Kabel 4-pol XLR',3),('usb','USB',3)])
@@ -120,8 +120,8 @@ def video():
         for i,t in enumerate(subs): s.text(x+190,y+56+i*18,t,12.5,'m')
     disp(1040,120,530,180,'QUER','Display 98 Zoll, quer',['iiyama LH9875UHS, 3840 x 2160','abgehängt an der hinteren Traverse','Windows-Anzeige: Querformat','Content 1920 x 1080, wird hochgezogen'],140,80)
     disp(1040,350,530,200,'HOCH','Display 55 Zoll, hochkant',['Samsung QM55C','am vorderen linken Bein','Windows-Anzeige: Hochformat','Content 1080 x 1920, synchron zum 98er'],80,140)
-    s.wire([(640,330),(840,330),(840,210),(1040,210)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,210),sub='Weg rund 10,5 m')
-    s.wire([(640,380),(840,380),(840,450),(1040,450)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,450),sub='Weg rund 14,5 m')
+    s.wire([(640,330),(840,330),(840,210),(1040,210)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,210),sub='Weg rund 11,5 m')
+    s.wire([(640,380),(840,380),(840,450),(1040,450)],'hdmi',width=3.5,label='HDMI Glasfaser 20 m',lpos=(940,450),sub='Weg rund 17 m')
     s.text(648,323,'Ausgang 1',10.5,'m',w=700);s.text(648,398,'Ausgang 2',10.5,'m',w=700)
     # Reserve
     s.zone(30,596,740,216,'RESERVE')
@@ -138,10 +138,12 @@ def video():
     s.wire([(1110,662),(1290,662)],'hdmi',label='HDMI 5 m',lpos=(1200,662))
     s.wire([(985,728),(985,694)],'usb',label='USB',lpos=(985,711))
     s.notes(30,860,1540,'HINWEISE',[
+     'Beide HDMI-Kabel laufen über das hintere rechte Bein (bei den Kühlschränken) nach oben und dann in der Traverse zu den Displays.',
      'Glasfaserkabel haben eine Richtung. Der Stecker mit „Source“ gehört an den Rechner, der mit „Display“ an den Screen.',
      'Den 55er in den Windows-Anzeigeeinstellungen auf Hochformat drehen, Skalierung beider Displays auf 100 %.',
      'Beide Screens und das Licht laufen auf derselben Show-Uhr im Rechner. Ein Sync-Kabel gibt es nicht.',
-     'start.bat legt Dashboard und beide Screen-Fenster auf die Displays. Passt die Zuordnung nicht: Positionen in start.json.'],cols=2)
+     'start.bat legt Dashboard und beide Screen-Fenster auf die Displays. Passt die Zuordnung nicht: Positionen in start.json.',
+     'Das Kabel zum 55er ist mit rund 17 m von 20 m knapp. Nicht in Schlaufen legen.'],cols=2)
     s.legend(972,[('hdmi','HDMI',3.5),('usb','USB und USB-C',3)])
     return s.out()
 
@@ -151,8 +153,8 @@ CIRC=[('A1','L1','Cluster C1 bis C4','TRUE1 durchgeschleift, je 620 W max.',2480
 ('A4','L1','Display 55 Zoll am Bein','Adapter TRUE1 auf Schuko',150),
 ('A5','L2','QuikSpots Q1 bis Q8','Rohr P1 bis P3, Einspeisung am Rohr P1, weiter per Hybridkabel',320),
 ('A6','L3','QuikSpots Q9 bis Q13, Pixel Lines PL1 bis PL4','Rohr P4 und P5, Einspeisung am Rohr P4',440),
-('B1','L1','4 PATT Driver an der Traverse','Schuko 10 m hoch in die Traverse, dann TRUE1 durchgeschleift, je 240 W',960),
-('B2','L2','Display 98 Zoll','an der hinteren Traverse',350),
+('B1','L1','4 PATT Driver an der Traverse','Schuko 10 m über das hintere rechte Bein, dann TRUE1 durchgeschleift, je 240 W',960),
+('B2','L2','Display 98 Zoll','Schuko 10 m + 5 m über das hintere rechte Bein und die hintere Traverse',350),
 ('B3','L3','Siebträgermaschine, Kaffeemühle','nichts dazustecken',1550),
 ('B4','L1','2 Kühlschränke','bleibt über Nacht an',300),
 ('B5','L2','Amp Dynacord LX 2200, Pult CQ18T','Ton',460),
@@ -201,6 +203,7 @@ def strom():
         s.raw(f'<rect class="barbg" x="30" y="{y+9}" width="230" height="10" rx="3"/><rect x="30" y="{y+9}" width="{230*a/32:.1f}" height="10" rx="3" fill="{COL[p]}"/>')
     s.text(30,1004,'Gesamt '+de(tot)+' W',14,'t',w=800);s.text(30,1024,'rund 50 % von 22 kW',12.5,'m')
     s.notes(440,1112,1130,'HINWEISE',[
+     'Alle Leitungen laufen über das hintere rechte Bein (bei den Kühlschränken) nach oben, nicht hinter dem Molton.',
      'Worst Case: alle Geräte an, Cluster mit voller Leistung. Belegt sind Cluster (620 W), Display 98 Zoll (331 W) und PATT Driver (240 W), der Rest ist geschätzt.',
      'Die Phasen der HAN-Kreise (1 bis 6 gleich L1, L2, L3, L1, L2, L3) sind angenommen. Am Verteiler prüfen.',
      'Vor dem Einschalten: Traverse erden, Anlage mit dem Prüfgerät messen.',
