@@ -173,6 +173,7 @@ html,body{touch-action:pan-x pan-y}
 #planTop .pseg button{min-height:40px}
 @media (max-height:460px){#main button{min-height:40px}}
 @media (max-width:600px){#info .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-right:-11px;padding-right:11px}#info .chips::-webkit-scrollbar{display:none}#info .chips button{flex:0 0 auto}}
+@media (max-width:600px){#info .chips.fr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}#info .chips.fl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px);mask-image:linear-gradient(90deg,transparent,#000 36px)}#info .chips.fl.fr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,transparent,#000 36px,#000 calc(100% - 36px),transparent)}}
 </style>
 </head>
 <body data-ver="2">
@@ -2162,7 +2163,7 @@ var e3=document.getElementById('v3d'),ep=document.getElementById('vpl'),es=docum
 e3.className=(!sOn&&!wantPlan)?'on':'';ep.className=(!sOn&&wantPlan)?'on':'';es.className=sOn?'on':'';ep.style.display=s.noplan?'none':'';es.style.display=s.sig?'':'none';es.textContent=s.sig==='Strom'?'Stromplan':'Signalplan';
 e3.parentNode.style.setProperty('--n',nn);e3.parentNode.style.setProperty('--i',sOn?nn-1:(wantPlan?1:0));
 document.getElementById('vpl').textContent=s.pl;document.getElementById('vpl').parentNode.classList.toggle('pl',wantPlan);
-var ih=infoHtml(stepI),ie=document.getElementById('info');ie.innerHTML=ih;ie.style.display=(ih&&!sOn)?'':'none';
+var ih=infoHtml(stepI),ie=document.getElementById('info');ie.innerHTML=ih;setTimeout(function(){chipInit();},0);ie.style.display=(ih&&!sOn)?'':'none';
 var in3=!planMode&&!sOn,l3=in3&&stepI===2&&LM!=='lamp';
 SG.com.visible=in3&&(stepI===3||l3);SG.dev.visible=l3;SG.tag.visible=l3;SG.vid.visible=in3&&stepI===3;SG.aud.visible=in3&&stepI===4;
 SG.eth.visible=l3&&(LM==='all'||LM==='eth');SG.dmx.visible=l3&&(LM==='all'||LM==='dmx');SG.kombi.visible=l3&&(LM==='all'||LM==='kombi');SG.patt.visible=l3&&(LM==='all'||LM==='patt');
@@ -2173,7 +2174,9 @@ var LMS=[['lamp','','Lampen'],['all','','Alle Kabel'],['eth','#4a90ff','Netzwerk
 var LEG_D='<span><u style="color:#b07cff;border-color:#b07cff">D</u> PATT Driver</span>';
 var LEG_DMX='<span><i style="background:#35c46a"></i>DMX 5-pol</span><span><i style="background:#19c9b0"></i>Hybridkabel DMX und TRUE1</span>',LEG_KOM='<span><i style="background:#ff9f1a"></i>Kombikabel von der PowerBox</span>';
 function infoMin(){IMIN=!IMIN;var e=document.getElementById('info');e.classList.toggle('min',IMIN);var b=e.querySelector('.ih');if(b){b.setAttribute('aria-expanded',!IMIN);}}
-function setLM(m){LM=m;apply();}
+function chipFade(c){if(!c){return;}var x=c.scrollLeft,max=c.scrollWidth-c.clientWidth;c.classList.toggle('fl',x>2);c.classList.toggle('fr',x<max-2);}
+function chipInit(x){var c=document.querySelector('#info .chips');if(!c){return;}if(x!==undefined){c.scrollLeft=x;}var on=c.querySelector('button.on');if(on){var l=on.offsetLeft,r=l+on.offsetWidth;if(l<c.scrollLeft+8){c.scrollLeft=Math.max(0,l-24);}else if(r>c.scrollLeft+c.clientWidth-8){c.scrollLeft=r-c.clientWidth+24;}}chipFade(c);c.onscroll=function(){chipFade(c);};}
+function setLM(m){var c=document.querySelector('#info .chips'),x=c?c.scrollLeft:0;LM=m;apply();chipInit(x);}
 function infoHtml(i){var s=STEPS[i];if(i===5){return '';}var h='<button class="ih" type="button" aria-expanded="'+!IMIN+'" onclick="infoMin()">'+stepNo(i)+s.t+'</button>';
 if(i===2&&!planMode){h+='<div class="chips">'+LMS.map(function(m){return '<button class="'+(LM===m[0]?'on':'')+'" onclick="setLM(\''+m[0]+'\')">'+(m[1]?'<i style="background:'+m[1]+'"></i>':'')+m[2]+'</button>';}).join('')+'</div>'+(LM==='lamp'?s.x:(LM==='dmx'?LEG_DMX:(LM==='kombi'?LEG_KOM:LEG_D)));}else if(planMode&&(i===3||i===4)){}else{h+=s.x;}
 return h;}
