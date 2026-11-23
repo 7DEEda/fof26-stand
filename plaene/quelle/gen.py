@@ -234,7 +234,7 @@ CIRC=[('A1','L1','Cluster C1 bis C4','TRUE1 3 m zu C1, dann von Cluster zu Clust
 ('A3','L3','PowerBox 1 und 2, Switch B','TRUE1 1,5 m zur näheren PowerBox, 1,5 m zur zweiten, Switch B über Adapter TRUE1 auf Schuko',700),
 ('A4','L1','Display 55 Zoll am Bein','Adapter TRUE1 auf Schuko, Schuko 3 m',150),
 ('A5','L2','QuikSpots Q1 bis Q13 (Rohr P1 bis P5), je 50 W','TRUE1 5 m zu Q1 (P1 vorn), im Rohr Hybridkabel, Rohrwechsel TRUE1 3 m (4 Stück)',650),
-('A6','L3','Pixel Lines PL1 bis PL4, je 420 W','TRUE1 5 m zu PL1 (links oben), PL2 1,5 m, PL4 3 m hinter dem Display, PL3 1,5 m',1680),
+('A6','L3','Pixel Lines PL1 bis PL4, je 420 W (im Betrieb höchstens 30 %)','TRUE1 5 m zu PL1 (links oben), PL2 1,5 m, PL4 3 m hinter dem Display, PL3 1,5 m',1680),
 ('B1','L1','4 PATT Driver an der Traverse','Schuko 10 m über das hintere rechte Bein, Netzkabel Schuko auf TRUE1, Brücken TRUE1 1,5 m, 3 m, 1,5 m',960),
 ('B2','L2','Display 98 Zoll','Schuko 10 m + 5 m über das hintere rechte Bein und die hintere Traverse',350),
 ('B3','L3','Siebträgermaschine, Kaffeemühle','nichts dazustecken',1550),
@@ -286,7 +286,7 @@ def strom():
     s.text(30,1004,'Gesamt '+de(tot)+' W',14,'t',w=800);s.text(30,1024,'rund '+str(round(tot/22080*100))+' % von 22 kW',12.5,'m')
     yN=s.notes(440,1112,1130,'HINWEISE',[
      'Nach oben geht alles über das hintere rechte Bein (bei den Kühlschränken). Nichts hinter dem Molton hochführen.',
-     'Worst Case: alle Geräte an, alles mit voller Leistung. Laut Hersteller: Cluster 620 W, Pixel Line 420 W, QuikSpot 50 W, PATT Driver 240 W, Display 98 Zoll. Der Rest ist geschätzt.',
+     'Worst Case: alle Geräte an, alles mit voller Leistung. Laut Hersteller: Cluster 620 W, Pixel Line 420 W, QuikSpot 50 W, PATT Driver 240 W, Display 98 Zoll. Der Rest ist geschätzt. Die Pixel Lines laufen im Betrieb mit höchstens 30 %, real also rund 500 W statt 1.680 W.',
      'Die Phasen der HAN-Kreise (1 bis 6 gleich L1, L2, L3, L1, L2, L3) sind angenommen. Am Verteiler prüfen.',
      'Vor dem Einschalten: Traverse an den Potentialausgleich, Anlage mit dem Prüfgerät messen. Freigabe nur durch eine Elektrofachkraft. FI-Schalter täglich mit der Prüftaste testen.',
      'Sicherungsrückbau nach Betriebsende: alle Kreise aus, nur B4 bleibt an. Wann das in Halle 1 ist (After Show Party bis 24:00), mit URBENO klären.'],cols=2,size=12,lh=16)
