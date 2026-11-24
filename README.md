@@ -17,3 +17,13 @@ Neue `index.html` über die alte hochladen (gleicher Dateiname). Pages baut auto
 ## Stand
 
 Visualisierung zur Orientierung, keine Werkplanung. Verbindlich sind die Pläne aus dem Briefing.
+
+## Pausenslide Green Stage (`/pause/`)
+
+Animierter Loop für die Regie der Green Stage: https://7deeda.github.io/fof26-stand/pause/
+
+- Im Browser (Chrome/Edge) öffnen, **F** für Vollbild.
+- Leertaste: Pause/weiter. Pfeil rechts/links (auch Bild auf/ab, Clicker): nächste/vorherige Folie.
+- **Auto-Update:** Die Seite prüft alle 20 s, ob eine neue Fassung auf GitHub liegt, und lädt sie am Ende des laufenden Durchgangs neu. Nach einem Commit dauert es ca. 1 bis 2 Minuten (GitHub-Pages-Deploy), dann ist die Änderung in der Regie. Im Pause-Modus wird nicht neu geladen.
+- Texte ändern: `pause/index.html` auf github.com mit dem Stift bearbeiten und committen (z. B. nach `Aus Berlin.` suchen).
+- Foto tauschen: Datei in `pause/assets/` mit **gleichem Namen** hochladen und danach in `pause/index.html` die Zahl hinter `?v=` überall ändern (sonst kann der Browser bis zu 10 Minuten das alte Bild zeigen).

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="de" style="background:#000"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TSE Pausenslide FoF 26</title>
+<style>
+@font-face{font-family:"Libre Franklin";src:url(assets/schrift.woff2?v=202611250040) format("woff2");font-weight:100 900}
+html,body{margin:0;padding:0;height:100%;background:#000;overflow:hidden;cursor:none}
+#wrap{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0;background:#0C080A;overflow:hidden}
+.bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;will-change:transform,opacity}
+.ms{opacity:0;z-index:4}
+#s{z-index:5}
+#ms .nums{visibility:hidden!important}
+#snums{transform-origin:0 0}
+:root{--redl:#B01E35}
+.s{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:"Libre Franklin",sans-serif;color:#fff}
+#s .shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(12,8,10,.95) 0%,rgba(12,8,10,.93) 34%,rgba(12,8,10,.72) 47%,rgba(12,8,10,.2) 63%,rgba(12,8,10,0) 78%),
+  linear-gradient(0deg,rgba(12,8,10,.55) 0%,rgba(12,8,10,0) 22%)}
+#s .logo{position:absolute;left:150px;top:110px;width:400px}
+#s .stage{position:absolute;left:150px;top:340px;width:880px;height:560px}
+#s .sc{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+#s .a{will-change:transform,opacity}
+#s .eye{font-weight:600;font-size:28px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-bottom:34px}
+#s .eye::before{content:"";display:block;width:64px;height:5px;background:var(--redl);margin-bottom:22px}
+#s .h{font-weight:900;font-size:104px;line-height:1.0;letter-spacing:-.01em;text-transform:uppercase}
+#s .gw{transition:color .7s ease}
+#s .gw.on{color:var(--redl)}
+#s .h em{font-style:normal;color:var(--redl)}
+#s .sub{margin-top:44px;font-weight:400;font-size:36px;line-height:1.32;color:rgba(255,255,255,.84);max-width:740px}
+#s .grid{display:grid;grid-template-columns:auto auto auto;gap:0 72px;justify-content:start}
+#s .st{border-top:4px solid var(--redl);padding-top:22px}
+#s .st .n{font-variant-numeric:tabular-nums;font-weight:900;font-size:104px;line-height:1;letter-spacing:-.01em}
+#s .st .n small{font-size:.5em;font-weight:800;margin-left:4px}
+#s .st .l{white-space:nowrap;margin-top:12px;font-weight:500;font-size:26px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+#s .nums{display:flex;gap:56px;align-items:stretch}
+#s .blk{display:flex;flex-direction:column}
+#s .lab{font-weight:600;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:18px}
+#s .val{font-weight:900;font-size:230px;line-height:170px;height:170px}
+#s .sep{width:4px;background:var(--redl)}
+#s .foot{position:absolute;left:150px;bottom:96px;display:flex;align-items:center;gap:40px}
+#s .url{font-weight:600;font-size:26px;letter-spacing:.08em;color:rgba(255,255,255,.75)}
+#s .dots{display:flex;gap:10px}
+#s .dots i{display:block;width:44px;height:5px;background:rgba(255,255,255,.22)}
+#s .dots i.on{background:var(--redl)}
+.ms{position:absolute;inset:0;overflow:hidden;font-family:"Libre Franklin",sans-serif;color:#fff;background:radial-gradient(ellipse 70% 60% at 85% 70%,rgba(176,30,53,.16),rgba(12,8,10,0) 70%),#0C080A}
+.ms .eye{position:absolute;left:150px;top:96px;font-weight:600;font-size:28px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.ms .eye::before{content:"";display:block;width:64px;height:5px;background:var(--redl);margin-bottom:22px}
+.ms .h{position:absolute;left:150px;top:120px;font-weight:900;font-size:110px;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
+.ms .h em{font-style:normal;color:var(--redl)}
+.ms .sub{position:absolute;left:150px;top:410px;font-size:34px;color:rgba(255,255,255,.82)}
+.ms .logo{position:absolute;right:150px;top:96px;width:260px}
+.ms .nums{position:absolute;right:150px;top:262px;display:flex;gap:40px;align-items:stretch}
+.ms .blk{display:flex;flex-direction:column}
+.ms .lab{font-weight:600;font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:14px}
+.ms .val{font-weight:900;font-size:150px;line-height:112px;height:112px}
+.ms .sep{width:4px;background:var(--redl)}
+.ms .map{position:absolute;left:100px;top:500px;width:1720px;height:400.4px}
+.ms .map img{position:absolute;inset:0;width:100%;height:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%),linear-gradient(0deg,transparent 0,#000 8%,#000 92%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+.ms .map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ms .pill{font-weight:800;font-size:19px;letter-spacing:.12em;text-transform:uppercase}
+</style></head>
+<body>
+<div id="wrap">
+<div class="bg" style="background-image:url(assets/bg-1-intro.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-2-zahlen.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-3-ton.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-3-licht.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-3-video.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-3-rigging.jpg?v=202611250040)"></div><div class="bg" style="background-image:url(assets/bg-4-stand.jpg?v=202611250040)"></div>
+<div class="s" id="s">
+  <div class="shade"></div>
+  <img class="logo" src="assets/tse-logo.png?v=202611250040">
+  <div class="stage">
+    <div class="sc" data-s="0" data-e="8">
+      <div class="eye a">Full-Service Veranstaltungstechnik</div>
+      <div class="h a">Aus Berlin.<br><em>Seit 1998.</em></div>
+    </div>
+    <div class="sc" data-s="8" data-e="17">
+      <div class="eye a">TSE in Zahlen</div>
+      <div class="grid">
+        <div class="st a"><div class="n"><span data-c="25">25</span><small>+</small></div><div class="l">Jahre Erfahrung</div></div>
+        <div class="st a"><div class="n"><span data-c="3000">3.000</span><small>+</small></div><div class="l">Events pro Jahr</div></div>
+        <div class="st a"><div class="n"><span data-c="150">150</span><small>+</small></div><div class="l">Kolleg:innen</div></div>
+      </div>
+    </div>
+    <div class="sc" data-s="17" data-e="31">
+      <div class="eye a">Unsere Gewerke</div>
+      <div class="h a" style="font-size:96px"><span class="gw">Ton.</span> <span class="gw">Licht.</span><br><span class="gw">Video.</span> <span class="gw">Rigging.</span></div>
+    </div>
+    <div class="sc" data-s="31" data-e="49">
+      <div class="eye a">Besuch uns am Stand</div>
+      <div class="nums a" id="snums">
+        <div class="blk"><div class="lab">Halle</div><div class="val">1</div></div>
+        <div class="sep"></div>
+        <div class="blk"><div class="lab">Stand</div><div class="val">C03</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><div class="url">www.tse-ag.com</div><div class="dots"><i></i><i></i><i></i><i></i></div></div>
+</div>
+<div class="ms" id="ms">
+  <div class="h">Hier lang<br><em>zu uns.</em></div>
+  <img class="logo" src="assets/tse-logo.png?v=202611250040">
+  <div class="nums">
+    <div class="blk"><div class="lab">Halle</div><div class="val">1</div></div>
+    <div class="sep"></div>
+    <div class="blk"><div class="lab">Stand</div><div class="val">C03</div></div>
+  </div>
+  <div class="map">
+    <img src="assets/karte.jpg?v=202611250040">
+    <svg viewBox="0 0 1890 440" preserveAspectRatio="none">
+      <defs>
+        <filter id="mglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fff"/></marker>
+      </defs>
+      <!-- Stage Green -->
+      <rect x="67" y="219" width="99" height="112" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3.5"/>
+      <g transform="translate(64,176)">
+        <rect x="0" y="-26" width="284" height="38" fill="#fff"/>
+        <text class="pill" x="14" y="0" fill="#0C080A">Du bist hier: Stage Green</text>
+      </g>
+      <!-- Route -->
+      <path id="route" d="M170,347 L764,347 L764,168 L885,168 L885,222 L1480,222 L1520,206 L1700,206 L1748,214"
+        fill="none" stroke="rgba(0,0,0,.55)" stroke-width="12" stroke-linejoin="round"/>
+      <path id="dash" d="M170,347 L764,347 L764,168 L885,168 L885,222 L1480,222 L1520,206 L1700,206 L1748,214"
+        fill="none" stroke="#fff" stroke-width="6" stroke-dasharray="16 12" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ah)"/>
+      <!-- C03 -->
+      <circle id="ring" cx="1766" cy="250" r="40" fill="none" stroke="#B01E35" stroke-width="5" opacity=".0"/>
+      <polygon points="1726,229 1806,249 1802,267 1722,247" fill="#B01E35" stroke="#fff" stroke-width="3" filter="url(#mglow)"/>
+      <g transform="translate(1612,138)">
+        <rect x="0" y="-26" width="244" height="38" fill="#B01E35"/>
+        <text class="pill" x="14" y="0" fill="#fff">TSE, Stand 1-C03</text>
+        <line x1="150" y1="12" x2="150" y2="84" stroke="#B01E35" stroke-width="3"/>
+      </g>
+    </svg>
+  </div>
+  </div>
+</div>
+<script>
+const L=49, IN=.7, OUT=.5, STG=.14, FADE=1.0, ZM=0.06, MS=37, MD=1.3, ME=49, MFD=0.7, GW=3.5;
+const B=[[0,8],[8,17],[17,20.5],[20.5,24],[24,27.5],[27.5,31],[31,37.6]];
+const cl=x=>Math.max(0,Math.min(1,x)), eo=x=>1-Math.pow(1-x,3);
+const scs=[...document.querySelectorAll('.sc')], bgs=[...document.querySelectorAll('.bg')];
+const ms=document.getElementById('ms'), dash=document.getElementById('dash'), ring=document.getElementById('ring');
+const S=document.getElementById('s'), sShade=S.querySelector('.shade'), sLogo=S.querySelector('.logo'), sFoot=S.querySelector('.foot'), snums=document.getElementById('snums'), sEye=snums.parentElement.querySelector('.eye');
+const mMap=ms.querySelector('.map'), mH=ms.querySelector('.h');
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+let GEO=null;
+function measure(){const W=document.getElementById('wrap'),wr=W.getBoundingClientRect(),k=wr.width/1920;
+  const sc=snums.parentElement;const v=sc.style.visibility;sc.style.visibility='visible';const tr=snums.style.transform;snums.style.transform='none';ms.style.visibility='visible';
+  const R=el=>{const r=el.getBoundingClientRect();return {x:(r.left-wr.left)/k,y:(r.top-wr.top)/k,h:r.height/k}};
+  GEO={s:R(snums),d:R(ms.querySelector('.nums'))};snums.style.transform=tr;sc.style.visibility=v}
+function fmt(v){return v>=1000?String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'.'):String(v)}
+function fit(){ms.querySelectorAll('svg g').forEach(g=>{const r=g.querySelector('rect'),t=g.querySelector('text');if(r&&t)r.setAttribute('width',(t.getBBox().width+28).toFixed(1))})}
+function wnd(k,t){const [s,e]=B[k];let best=0,tt=t;for(const x of [t,t-L,t+L]){const w=Math.min(cl((x-(s-FADE/2))/FADE),cl(((e+FADE/2)-x)/FADE));if(w>best){best=w;tt=x}}return [best,tt]}
+function at(t){
+  t=((t%L)+L)%L;
+  // backgrounds: incoming layer on top of outgoing
+  const act=[];
+  B.forEach(([s,e],k)=>{const [w,tt]=wnd(k,t);const bg=bgs[k];
+    if(w>0){const p=(tt-(s-FADE/2))/((e-s)+FADE);bg.style.transform='scale('+((1+ZM*p)).toFixed(4)+')';act.push([k,w,tt-s])}
+    bg.style.opacity=0;bg.style.zIndex=0});
+  act.sort((a,b)=>a[2]-b[2]);
+  act.forEach(([k,w],j)=>{const bg=bgs[k];bg.style.zIndex=1;bg.style.opacity=(act.length>1&&j===0)?w.toFixed(3):(act.length>1?1:w.toFixed(3))});
+  if(act.length>1){const inc=act[0],outg=act[1];bgs[inc[0]].style.zIndex=2;bgs[inc[0]].style.opacity=inc[1].toFixed(3);bgs[outg[0]].style.opacity=1}
+  // text scenes
+  scs.forEach(sc=>{
+    const s=+sc.dataset.s,e=+sc.dataset.e,on=t>=s&&t<e;
+    sc.style.visibility=on?'visible':'hidden'; if(!on) return;
+    const out=cl((e-t)/OUT);
+    sc.querySelectorAll('.a').forEach((el,i)=>{const p=eo(cl((t-s-.15-i*STG)/IN));el.style.opacity=(p*out).toFixed(3);el.style.transform='translateY('+((1-p)*36).toFixed(1)+'px)'});
+    const gw=sc.querySelectorAll('.gw');if(gw.length){const gi=Math.min(gw.length-1,Math.floor((t-s)/GW));gw.forEach((g,j)=>g.classList.toggle('on',j===gi))}
+    sc.querySelectorAll('[data-c]').forEach(n=>{const p=eo(cl((t-s-.5)/3.2));n.textContent=fmt(Math.round(+n.dataset.c*p))});
+  });
+  document.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',t>=+scs[k].dataset.s&&t<+scs[k].dataset.e));
+  // Stand -> Wegeleitung (Morph)
+  const on=t>=MS&&t<ME, e=on?eio(cl((t-MS)/MD)):0, fo=on?cl((ME-t)/MFD):0, mo=Math.min(e,fo);
+  ms.style.opacity=mo.toFixed(3); ms.style.visibility=mo>0?'visible':'hidden';
+  const keep=(on?(1-e):(t<.6?t/.6:1)).toFixed(3);
+  [sShade,sLogo,sFoot,sEye].forEach(el=>el.style.opacity=keep);
+  if(on&&GEO){const tx=(GEO.d.x-GEO.s.x)*e,ty=(GEO.d.y-GEO.s.y)*e,sc=1+(GEO.d.h/GEO.s.h-1)*e;snums.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px) scale('+sc.toFixed(4)+')'}
+  if(mo>0){const lt=t-MS,p2=eo(cl((lt-.4)/1.1));mMap.style.transform='translateY('+((1-p2)*70).toFixed(1)+'px)';mMap.style.opacity=p2.toFixed(3);mH.style.opacity=eo(cl((lt-.2)/0.9)).toFixed(3);
+    dash.setAttribute('stroke-dashoffset',(-lt*40).toFixed(1));const ph=(lt%1.6)/1.6;ring.setAttribute('r',(30+ph*55).toFixed(1));ring.setAttribute('opacity',(0.9*(1-ph)).toFixed(2))}
+}
+function scale(){const w=document.getElementById('wrap');const s=Math.min(innerWidth/1920,innerHeight/1080);w.style.transform='scale('+s+') translate(-50%,-50%)'}
+addEventListener('resize',scale);scale();
+const P=new URLSearchParams(location.search);const T0=+(P.get('t')||0);
+let T=T0,last=null,playing=!P.get('pause');
+const ST=[0,8,17,31];
+function loop(ts){if(last!==null&&playing)T+=(ts-last)/1000;last=ts;T=((T%L)+L)%L;at(T);if(!P.get('pause'))requestAnimationFrame(loop)}
+function idx(){let k=0;ST.forEach((s,i)=>{if(T>=s)k=i});return k}
+function go(t){T=t;at(T)}
+addEventListener('keydown',e=>{
+  if(e.key===' '||e.code==='Space'){playing=!playing;e.preventDefault()}
+  else if(e.key==='ArrowRight'||e.key==='PageDown'||e.key==='ArrowDown'){go(ST[(idx()+1)%ST.length]);e.preventDefault()}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='ArrowUp'){const k=idx();go(T-ST[k]>1.2?ST[k]:ST[(k+ST.length-1)%ST.length]);e.preventDefault()}
+});
+document.fonts.ready.then(()=>{document.querySelectorAll('#s .st').forEach(e=>{e.style.width=e.offsetWidth+'px'});ms.style.visibility='visible';fit();measure();requestAnimationFrame(loop)});
+// Doppelklick oder Taste F: Vollbild
+function fs(){const d=document.documentElement;if(!document.fullscreenElement)d.requestFullscreen&&d.requestFullscreen();else document.exitFullscreen()}
+addEventListener('dblclick',fs);addEventListener('keydown',e=>{if(e.key==='f'||e.key==='F')fs()});
+window.at=at;
+</script>
+<script>
+/* Auto-Update: prueft alle 20 s, ob auf GitHub eine neue Fassung liegt,
+   und laedt sie am Ende des laufenden Durchgangs neu (nicht waehrend Pause). */
+(function(){
+  var self=location.pathname.replace(/\/$/,'/index.html'),base=null,pending=false,lastT=0;
+  function chk(){fetch(self+'?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.text():null})
+    .then(function(t){if(t===null)return;if(base===null)base=t;else if(t!==base)pending=true}).catch(function(){})}
+  chk();setInterval(chk,20000);
+  setInterval(function(){if(pending&&playing&&T<lastT)location.reload();lastT=T},150);
+})();
+</script>
+</body></html>
